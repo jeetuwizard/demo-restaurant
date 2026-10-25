@@ -8,6 +8,6 @@ export const studio = {
 };
 
 export function studioWhatsappLink() {
-  const text = `Hi ${brand.owner.firstName}, I saw the restaurant demo by ${brand.name} and want a website like this for my restaurant.`;
+  const text = `Hi ${brand.name}, I saw your restaurant demo and want a website like this for my restaurant.`;
   return `${brand.whatsappUrl}?text=${encodeURIComponent(text)}`;
 }
