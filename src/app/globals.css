@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+/* Masala Lane Kitchen theme: the ONLY place colours are defined (light theme only).
+   cream/sand = backgrounds, maroon = brand, saffron = highlights, charcoal = text,
+   veg/nonveg = food markers, whatsapp = order buttons, the rest = food gallery tiles. */
+:root {
+  color-scheme: light;
+  --cream: #fff8ee;
+  --sand: #f6e7d2;
+  --saffron: #e07a12;
+  --saffron-light: #f39a3d;
+  --saffron-dark: #b85f07;
+  --maroon: #7a1f1f;
+  --maroon-dark: #5c1414;
+  --charcoal: #2a1a14;
+  --muted: #6b5548;
+  --line: #ead8c2;
+  --veg: #2f7d32;
+  --nonveg: #b3261e;
+  --whatsapp: #1f8a4c;
+  --whatsapp-dark: #17703c;
+  --gold-glow: #f3c98f;
+  --peach: #f7b267;
+  --rose: #d1495b;
+  --ember: #f79d65;
+  --honey: #ffd166;
+  --wheat: #e9b872;
+  --butter: #ffe29a;
+  --apricot: #f4a259;
+  --clay: #e8a87c;
+  --plum: #8c2f39;
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-sand: var(--sand);
+  --color-saffron: var(--saffron);
+  --color-saffron-light: var(--saffron-light);
+  --color-saffron-dark: var(--saffron-dark);
+  --color-maroon: var(--maroon);
+  --color-maroon-dark: var(--maroon-dark);
+  --color-charcoal: var(--charcoal);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-veg: var(--veg);
+  --color-nonveg: var(--nonveg);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-dark: var(--whatsapp-dark);
+  --color-gold-glow: var(--gold-glow);
+  --color-peach: var(--peach);
+  --color-rose: var(--rose);
+  --color-ember: var(--ember);
+  --color-honey: var(--honey);
+  --color-wheat: var(--wheat);
+  --color-butter: var(--butter);
+  --color-apricot: var(--apricot);
+  --color-clay: var(--clay);
+  --color-plum: var(--plum);
+  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-playfair);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+}
+
+dialog::backdrop {
+  background: color-mix(in srgb, var(--charcoal) 55%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
