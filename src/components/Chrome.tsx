@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { restaurant } from "@/config/restaurant";
+import { mapsUrl, restaurant } from "@/config/restaurant";
 import { studio, studioWhatsappLink } from "@/config/studio";
 import { useCart } from "./Cart";
+import { Icon } from "./Icon";
 
 const links = [
   { href: "/", label: "Home" },
@@ -13,25 +14,14 @@ const links = [
   { href: "/#visit", label: "Visit us" },
 ];
 
-export function DemoBanner() {
-  return (
-    <div className="bg-charcoal px-4 py-2 text-center text-xs text-cream sm:text-sm">
-      Demo website by{" "}
-      <a href={studio.portfolioUrl} className="font-semibold underline underline-offset-2">
-        {studio.name}
-      </a>{" "}
-      — this restaurant is fictional.
-    </div>
-  );
-}
-
 export function Header() {
   const [open, setOpen] = useState(false);
   const { count, openOrder } = useCart();
+  const orderLabel = `Your order${count > 0 ? ` (${count})` : ""}`;
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-cream/90 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-        <Link href="/" className="font-display text-xl font-bold text-maroon">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4">
+        <Link href="/" className="min-w-0 truncate font-display text-xl font-bold text-maroon">
           {restaurant.name}
         </Link>
         <nav className="hidden items-center gap-7 md:flex" aria-label="Main">
@@ -41,17 +31,18 @@ export function Header() {
             </Link>
           ))}
           <button type="button" onClick={openOrder} className="rounded-full bg-maroon px-4 py-2 font-semibold text-cream transition hover:bg-maroon-dark">
-            Your order{count > 0 ? ` (${count})` : ""}
+            {orderLabel}
           </button>
         </nav>
         <button
           type="button"
-          className="rounded-lg px-3 py-2 font-semibold text-maroon md:hidden"
+          className="grid size-11 shrink-0 place-items-center rounded-lg text-maroon md:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
+          aria-label={open ? "Close navigation" : "Open navigation"}
           onClick={() => setOpen(!open)}
         >
-          {open ? "Close" : "Menu ☰"}
+          <Icon name={open ? "close" : "menu"} />
         </button>
       </div>
       {open && (
@@ -69,7 +60,7 @@ export function Header() {
             }}
             className="mt-2 w-full rounded-full bg-maroon px-4 py-3 font-semibold text-cream"
           >
-            Your order{count > 0 ? ` (${count})` : ""}
+            {orderLabel}
           </button>
         </nav>
       )}
@@ -80,31 +71,52 @@ export function Header() {
 export function Footer() {
   return (
     <footer className="bg-charcoal text-cream">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-2">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-3">
         <div>
           <p className="font-display text-2xl font-bold">{restaurant.name}</p>
-          <p className="mt-2 text-cream/75">{restaurant.area}</p>
-          <p className="mt-1 text-cream/75">Phone: {restaurant.maskedPhone} (hidden in demo)</p>
-        </div>
-        <div className="rounded-3xl bg-white/5 p-6 ring-1 ring-white/10">
-          <p className="font-display text-xl font-bold">Want a website like this for your restaurant?</p>
-          <p className="mt-2 text-sm text-cream/75">Menu, online ordering on WhatsApp, photos and directions, built by {studio.name}.</p>
-          <a
-            href={studioWhatsappLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-5 inline-block rounded-full bg-whatsapp px-5 py-3 font-bold text-white transition hover:bg-whatsapp-dark"
-          >
-            Chat with {studio.name} on WhatsApp
+          <p className="mt-2 text-cream/75">{restaurant.cuisine}</p>
+          <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="mt-3 flex items-center gap-2 text-cream/75 hover:text-cream">
+            <Icon name="pin" className="size-4 shrink-0" />
+            {restaurant.area}
           </a>
+        </div>
+        <div>
+          <p className="font-display text-lg font-bold">Opening hours</p>
+          <ul className="mt-3 space-y-1 text-cream/75">
+            {restaurant.hours.map((h) => (
+              <li key={h.days}>
+                {h.days}: <span className="text-cream">{h.time}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="font-display text-lg font-bold">Explore</p>
+          <ul className="mt-3 space-y-1 text-cream/75">
+            {links.slice(1).map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="hover:text-cream">{l.label}</Link>
+              </li>
+            ))}
+            <li>
+              <Link href="/credits/" className="hover:text-cream">Photo credits</Link>
+            </li>
+          </ul>
         </div>
       </div>
       <div className="border-t border-white/10 px-4 py-5 text-center text-sm text-cream/70">
-        Demo website by{" "}
-        <a href={studio.portfolioUrl} className="font-semibold text-cream underline underline-offset-2">
-          {studio.name}
-        </a>
-        . {restaurant.name} is a fictional restaurant.
+        <p>
+          Concept website designed and built by{" "}
+          <a href={studio.portfolioUrl} className="font-semibold text-cream underline underline-offset-2">
+            {studio.name}
+          </a>
+          . {restaurant.name} is a concept restaurant.
+        </p>
+        <p className="mt-1">
+          <a href={studioWhatsappLink()} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-cream">
+            Want a website like this for your restaurant?
+          </a>
+        </p>
       </div>
     </footer>
   );

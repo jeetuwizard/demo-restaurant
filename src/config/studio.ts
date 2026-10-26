@@ -3,11 +3,12 @@ import brand from "./brand.json";
 
 export const studio = {
   name: brand.name,
-  ownerFirstName: brand.owner.firstName,
   portfolioUrl: brand.urls.portfolio,
+  whatsappUrl: brand.whatsappUrl,
 };
 
+/** "Get a website like this" enquiry to the studio. */
 export function studioWhatsappLink() {
-  const text = `Hi ${brand.name}, I saw your restaurant demo and want a website like this for my restaurant.`;
+  const text = `Hi ${brand.name}, I saw your restaurant website concept and want a website like this for my restaurant.`;
   return `${brand.whatsappUrl}?text=${encodeURIComponent(text)}`;
 }

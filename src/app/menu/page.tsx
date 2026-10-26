@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { MenuCard, VegMark } from "@/components/MenuCard";
+import { Photo } from "@/components/Photo";
 import { menu } from "@/config/menu";
 
 export const metadata: Metadata = { title: "Menu" };
@@ -7,8 +8,10 @@ export const metadata: Metadata = { title: "Menu" };
 export default function MenuPage() {
   return (
     <>
-      <section className="bg-maroon text-cream">
-        <div className="mx-auto max-w-6xl px-4 py-14">
+      <section className="relative isolate overflow-hidden bg-maroon text-cream">
+        <Photo slot="menu-banner" width={1600} height={600} preload className="-z-10" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-r from-maroon via-maroon/85 to-maroon/40" />
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:py-20">
           <h1 className="font-display text-4xl font-bold sm:text-5xl">Our menu</h1>
           <p className="mt-3 max-w-xl text-cream/85">Add dishes to your order, then send it to us on WhatsApp in one tap.</p>
           <p className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">

@@ -2,7 +2,7 @@
 
 /* Masala Lane Kitchen theme: the ONLY place colours are defined (light theme only).
    cream/sand = backgrounds, maroon = brand, saffron = highlights, charcoal = text,
-   veg/nonveg = food markers, whatsapp = order buttons, the rest = food gallery tiles. */
+   veg/nonveg = food markers, whatsapp = order buttons, gold-glow = photo placeholder. */
 :root {
   color-scheme: light;
   --cream: #fff8ee;
@@ -20,15 +20,6 @@
   --whatsapp: #1f8a4c;
   --whatsapp-dark: #17703c;
   --gold-glow: #f3c98f;
-  --peach: #f7b267;
-  --rose: #d1495b;
-  --ember: #f79d65;
-  --honey: #ffd166;
-  --wheat: #e9b872;
-  --butter: #ffe29a;
-  --apricot: #f4a259;
-  --clay: #e8a87c;
-  --plum: #8c2f39;
 }
 
 @theme inline {
@@ -47,15 +38,6 @@
   --color-whatsapp: var(--whatsapp);
   --color-whatsapp-dark: var(--whatsapp-dark);
   --color-gold-glow: var(--gold-glow);
-  --color-peach: var(--peach);
-  --color-rose: var(--rose);
-  --color-ember: var(--ember);
-  --color-honey: var(--honey);
-  --color-wheat: var(--wheat);
-  --color-butter: var(--butter);
-  --color-apricot: var(--apricot);
-  --color-clay: var(--clay);
-  --color-plum: var(--plum);
   --font-sans: var(--font-dm-sans);
   --font-display: var(--font-playfair);
 }
